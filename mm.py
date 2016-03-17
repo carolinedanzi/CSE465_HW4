@@ -12,17 +12,18 @@ import sys
 
 # The first command line argument at 0 is the file name, the second will be
 # the tsv, and the third will be the tmp file.  
-print(sys.argv[0])
-print(sys.argv[1])
-print(sys.argv[2])
+tsvFile = sys.argv[1]
+formFile = sys.argv[2]
 
-tsvFile = sys.arg[1]
-formFile = sys.arg[2]
-
+# open the files for reading
 tsvFile = open(tsvFile, "r")
 formFile = open(formFile, "r")
 
-colHeadings = tsvFile.readLine().strip.split('\t')
+# The first line in the tsv file has the column headings
+colHeadings = tsvFile.readline().strip().split('\t')
+
+# Build a dictionary of the column headings where the key
+# is the string heading and the value is the index
 columns = {}
 i = 0
 for column in colHeadings:
