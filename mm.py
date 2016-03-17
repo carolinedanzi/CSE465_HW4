@@ -9,15 +9,15 @@ documentation for string methods, and notes from another class for regex syntax.
 """
 
 import sys
+import re
 
 # The first command line argument at 0 is the file name, the second will be
 # the tsv, and the third will be the tmp file.  
-tsvFile = sys.argv[1]
-formFile = sys.argv[2]
+tsvFileName = sys.argv[1]
+tmpFileName = sys.argv[2]
 
 # open the files for reading
-tsvFile = open(tsvFile, "r")
-formFile = open(formFile, "r")
+tsvFile = open(tsvFileName, 'r')
 
 # The first line in the tsv file has the column headings
 colHeadings = tsvFile.readline().strip().split('\t')
@@ -33,8 +33,28 @@ for column in colHeadings:
 # Get the index of the ID column for file name
 idIndex = columns['ID']
 
-for line in tsvFile:
-    cells = line.strip().split('\t')
+for row in tsvFile:
+    cells = row.strip().split('\t')
     fileName = cells[idIndex] + '.txt'
-    print(fileName)
+    file = open(fileName, 'w')
+    tmpFile = open(tmpFileName, 'r')
+
+    # Go through each line in the template file, see if it has
+    # any <<tags>>, replace them, and write the string to the output file
+    for line in tmpFile:
+        r = re.search('<<(.*?)>>', line)
+        if r != None:
+            attribute = cells[columns[r.group(1)]]
+            line = re.sub('<<' + r.group(1) + '>>', attribute, line)
+        file.write(line)
+    file.close()
+
+tsvFile.close()
+tmpFile.close()
+
+"""
+.search to .finditer or .findall
+"""
+    
+        
     
