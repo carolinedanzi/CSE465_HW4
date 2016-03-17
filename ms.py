@@ -3,7 +3,7 @@ class Multiset:
     # Constructor for multiset
     def __init__(self):
         self.multiset = {}
-        self.count = 0
+        self.num = 0
     
     # Adds a single instance of v to the multiset
     def add(self, v):
@@ -11,7 +11,7 @@ class Multiset:
             self.multiset[v] += 1
         else:
             self.multiset[v] = 1
-        self.count += 1
+        self.num += 1
 
     # Removes a single instance of v to the multiset. If the
     # value v is not a member of the multiset, no action is performed.
@@ -21,7 +21,7 @@ class Multiset:
                 self.multiset.pop(v)
             else:
                 self.multiset[v] -= 1
-            self.count -= 1
+            self.num -= 1
         
     # Returns the number of copies of the value v are present
     # in the multiset.
@@ -33,9 +33,53 @@ class Multiset:
 
     # Returns the total number of items in the multiset.
     def size(self):
-        return self.count
+        return self.num
 
     # For debugging
     def __str__(self):
         return "Multiset: " + str(self.multiset)
+
+    if __name__ == "__main__":
+        intMS = Multiset()
+        intMS.add(3)
+        intMS.add(3)
+        intMS.add(4)
+        intMS.add(3)
+        intMS.add(4)
+        intMS.add(7)
+        print('**********')
+        print('Size: ' + intMS.size())
+        print(str(intMS))
+        for m in intMS:
+            print(m + ':  ' + intMS.count(m))
+        intMS.remove(3)
+        intMS.remove(3)
+        intMS.remove(3)
+        intMS.remove(3)
+        intMS.remove(3)
+        print('**********')
+        print('Size: ' + intMS.size())
+        for m in intMS:
+            print(m + ':  ' + intMS.count(m))
+
+        strMS = Multiset()
+        strMS.add('cat')
+        strMS.add('dog')
+        strMS.add('walrus')
+        strMS.add('cat')
+        strMS.add('lemur')
+        strMS.add('walrus')
+        print('**********')
+        print('Size:' + strMS.size())
+        for s in strMS:
+            print(s + ': ' + strMS.count(s))
+        strMS.remove('cat')
+        strMS.remove('cat')
+        strMS.remove('cat')
+        strMS.remove('cat')
+        print('**********')
+        print('Size: ' + strMS.size())
+        for s in strMS:
+            print(s + ': ' + strMS.count(s))
+        
         
