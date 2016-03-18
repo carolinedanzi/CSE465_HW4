@@ -11,7 +11,7 @@ documentation for string methods, and notes from another class for regex syntax.
 import sys
 import re
 
- ,# The first command line argument at 0 is the file name, the second will be
+# The first command line argument at 0 is the file name, the second will be
 # the tsv, and the third will be the tmp file.  
 tsvFileName = sys.argv[1]
 tmpFileName = sys.argv[2]
@@ -42,10 +42,13 @@ for row in tsvFile:
     # Go through each line in the template file, see if it has
     # any <<tags>>, replace them, and write the string to the output file
     for line in tmpFile:
-        r = re.search('<<(.*?)>>', line)
-        if r != None:
-            attribute = cells[columns[r.group(1)]]
-            line = re.sub('<<' + r.group(1) + '>>', attribute, line)
+        pattern = re.compile('<<(.*?)>>')
+        # finditer returns a sequence of match objects
+        matchIterator = pattern.finditer(line)
+        for match in matchIterator:
+            header = match.group(1)
+            attribute = cells[columns[header]]
+            line = re.sub('<<' + header + '>>', attribute, line)
         file.write(line)
     file.close()
 
