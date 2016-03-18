@@ -1,3 +1,14 @@
+"""
+Caroline Danzi
+Dr. Zmuda
+CSE 465
+
+Defines a class Multiset, which is a collection of elements
+that allows duplicates.  If run as main tester code will be run.
+
+Had help from Dr. Zmuda in office hours.
+"""
+
 class Multiset:
 
     # Constructor for multiset
@@ -63,23 +74,23 @@ if __name__ == "__main__":
         print(str(m) + ':  ' + str(intMS.count(m)))
 
     strMS = Multiset()
-    strMS.add('cat')
-    strMS.add('dog')
-    strMS.add('walrus')
-    strMS.add('cat')
-    strMS.add('lemur')
-    strMS.add('walrus')
+    strMS.add('3')
+    strMS.add('4')
+    strMS.add('5')
+    strMS.add('3')
+    strMS.add('7')
+    strMS.add('5')
     print('**********')
     print('Size:' + str(strMS.size()))
     for s in range(10):
-        print(str(s) + ': ' + str(strMS.count(s)))
-    strMS.remove('cat')
-    strMS.remove('cat')
-    strMS.remove('cat')
-    strMS.remove('cat')
+        print(str(s) + ': ' + str(strMS.count(str(s))))
+    strMS.remove('3')
+    strMS.remove('3')
+    strMS.remove('3')
+    strMS.remove('3')
     print('**********')
     print('Size: ' + str(strMS.size()))
     for s in range(10):
-        print(str(s) + ': ' + str(strMS.count(s)))
+        print(str(s) + ': ' + str(strMS.count(str(s))))
         
         

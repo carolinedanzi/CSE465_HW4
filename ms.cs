@@ -1,4 +1,11 @@
-﻿using System;
+﻿// Caroline Danzi
+// Dr. Zmuda
+// CSE 465
+// Implements a Multiset class that is a collection of elements
+// which allows duplicates.
+// Dr. Zmuda provided the code skeleton and outline.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
