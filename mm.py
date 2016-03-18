@@ -11,7 +11,7 @@ documentation for string methods, and notes from another class for regex syntax.
 import sys
 import re
 
-# The first command line argument at 0 is the file name, the second will be
+ ,# The first command line argument at 0 is the file name, the second will be
 # the tsv, and the third will be the tmp file.  
 tsvFileName = sys.argv[1]
 tmpFileName = sys.argv[2]
