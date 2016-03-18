@@ -16,7 +16,7 @@ import re
 tsvFileName = sys.argv[1]
 tmpFileName = sys.argv[2]
 
-# open the files for reading
+# open the tab-separated file for reading
 tsvFile = open(tsvFileName, 'r')
 
 # The first line in the tsv file has the column headings
@@ -42,22 +42,22 @@ for row in tsvFile:
     # Go through each line in the template file, see if it has
     # any <<tags>>, replace them, and write the string to the output file
     for line in tmpFile:
-        pattern = re.compile('<<(.*?)>>')
+        # Had help from Kyle B. with finditer
+        pattern = re.compile('<<(\w*)>>')
         # finditer returns a sequence of match objects
         matchIterator = pattern.finditer(line)
+
+        # for each match that it finds (there may be multiple in the line)
+        # find the appropriate attribute at the index of the column header
         for match in matchIterator:
             header = match.group(1)
             attribute = cells[columns[header]]
             line = re.sub('<<' + header + '>>', attribute, line)
+            
         file.write(line)
     file.close()
 
 tsvFile.close()
-tmpFile.close()
-
-"""
-.search to .finditer or .findall
-"""
-    
+tmpFile.close()  
         
     
